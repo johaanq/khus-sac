@@ -1,0 +1,177 @@
+{
+  "professionals": [
+    {
+      "id": 1,
+      "name": "María González",
+      "profession": "Diseñadora Gráfica",
+      "email": "maria@email.com",
+      "phone": "+51987654321",
+      "password": "123456",
+      "profileImage": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      "gallery": [
+        "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/1591061/pexels-photo-1591061.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+      ],
+      "description": "Especialista en diseño gráfico y branding con más de 5 años de experiencia. Creo identidades visuales únicas que conectan con tu audiencia y fortalecen tu marca.",
+      "services": ["Diseño de logotipos", "Identidad corporativa", "Material publicitario", "Diseño web"],
+      "location": {
+        "district": "Miraflores",
+        "city": "Lima",
+        "address": "Av. Larco 1234, Miraflores",
+        "coordinates": {
+          "lat": -12.1191,
+          "lng": -77.0292
+        }
+      },
+      "rate": {
+        "min": 150,
+        "max": 500,
+        "currency": "PEN",
+        "type": "por proyecto"
+      },
+      "rating": 4.8,
+      "reviewsCount": 24,
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Carlos Mendoza",
+      "profession": "Desarrollador Web",
+      "email": "carlos@email.com",
+      "phone": "+51987654322",
+      "password": "123456",
+      "profileImage": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      "gallery": [
+        "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+      ],
+      "description": "Desarrollador full-stack especializado en React y Node.js. Transformo ideas en aplicaciones web modernas y funcionales que impulsan tu negocio.",
+      "services": ["Desarrollo web", "Aplicaciones móviles", "E-commerce", "Mantenimiento web"],
+      "location": {
+        "district": "San Isidro",
+        "city": "Lima",
+        "address": "Av. Javier Prado Este 456, San Isidro",
+        "coordinates": {
+          "lat": -12.0931,
+          "lng": -77.0465
+        }
+      },
+      "rate": {
+        "min": 80,
+        "max": 120,
+        "currency": "PEN",
+        "type": "por hora"
+      },
+      "rating": 4.9,
+      "reviewsCount": 31,
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Ana Rodríguez",
+      "profession": "Fotógrafa",
+      "email": "ana@email.com",
+      "phone": "+51987654323",
+      "password": "123456",
+      "profileImage": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      "gallery": [
+        "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/1264210/pexels-photo-1264210.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/1264211/pexels-photo-1264211.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+      ],
+      "description": "Fotógrafa profesional especializada en eventos, retratos y fotografía comercial. Capturo momentos únicos con un estilo natural y emotivo.",
+      "services": ["Fotografía de bodas", "Sesiones de retratos", "Eventos corporativos", "Fotografía de productos"],
+      "location": {
+        "district": "Barranco",
+        "city": "Lima",
+        "address": "Jr. Pedro de Osma 789, Barranco",
+        "coordinates": {
+          "lat": -12.1467,
+          "lng": -77.0208
+        }
+      },
+      "rate": {
+        "min": 300,
+        "max": 800,
+        "currency": "PEN",
+        "type": "por sesión"
+      },
+      "rating": 4.7,
+      "reviewsCount": 18,
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "name": "Luis Torres",
+      "profession": "Consultor de Marketing",
+      "email": "luis@email.com",
+      "phone": "+51987654324",
+      "password": "123456",
+      "profileImage": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      "gallery": [
+        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/3184467/pexels-photo-3184467.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+      ],
+      "description": "Consultor en marketing digital con experiencia en estrategias de crecimiento para startups y PYMES. Ayudo a empresas a aumentar su presencia online y ventas.",
+      "services": ["Estrategia de marketing", "Marketing digital", "Redes sociales", "Análisis de mercado"],
+      "location": {
+        "district": "Surco",
+        "city": "Lima",
+        "address": "Av. El Derby 321, Surco",
+        "coordinates": {
+          "lat": -12.1358,
+          "lng": -76.9947
+        }
+      },
+      "rate": {
+        "min": 200,
+        "max": 400,
+        "currency": "PEN",
+        "type": "por consulta"
+      },
+      "rating": 4.6,
+      "reviewsCount": 15,
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "name": "Sofia Vargas",
+      "profession": "Arquitecta",
+      "email": "sofia@email.com",
+      "phone": "+51987654325",
+      "password": "123456",
+      "profileImage": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      "gallery": [
+        "https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/2219025/pexels-photo-2219025.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/2219026/pexels-photo-2219026.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+      ],
+      "description": "Arquitecta especializada en diseño residencial y comercial. Creo espacios funcionales y estéticamente atractivos que se adaptan a las necesidades de cada cliente.",
+      "services": ["Diseño arquitectónico", "Remodelaciones", "Diseño de interiores", "Supervisión de obra"],
+      "location": {
+        "district": "La Molina",
+        "city": "Lima",
+        "address": "Av. Raúl Ferrero 654, La Molina",
+        "coordinates": {
+          "lat": -12.0792,
+          "lng": -76.9447
+        }
+      },
+      "rate": {
+        "min": 100,
+        "max": 150,
+        "currency": "PEN",
+        "type": "por m²"
+      },
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "isActive": true
+    }
+  ],
+  "auth": {
+    "currentUser": null
+  }
+}
