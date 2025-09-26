@@ -105,11 +105,11 @@ export default function HomePage() {
 
 
       {/* Search and Filters */}
-      <section className="py-8 px-4 border-b border-border bg-background">
+      <section className="py-12 px-4 border-b border-border bg-background">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-6">
-            <h2 className="text-xl font-semibold text-foreground mb-1">Busca tu profesional ideal</h2>
-            <p className="text-sm text-muted-foreground">Filtra por ubicación, precio y especialidad</p>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-2">Busca tu profesional ideal</h2>
+            <p className="text-muted-foreground">Filtra por ubicación, precio y especialidad</p>
           </div>
           
           <div className="flex flex-col lg:flex-row gap-4 items-center">
@@ -120,7 +120,7 @@ export default function HomePage() {
                 placeholder="Buscar por nombre, profesión o servicio..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 h-10 bg-background border border-input focus:border-primary transition-colors text-sm"
+                className="pl-10 h-11 bg-background border border-input focus:border-primary transition-colors"
               />
             </div>
 
@@ -128,7 +128,7 @@ export default function HomePage() {
             <Button
               variant="outline"
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 bg-background h-10 px-4 border border-input hover:border-primary transition-colors"
+              className="flex items-center gap-2 bg-background h-11 px-4 border border-input hover:border-primary transition-colors"
             >
               <Filter className="w-4 h-4" />
               Filtros
@@ -140,7 +140,7 @@ export default function HomePage() {
             </Button>
 
             {hasActiveFilters && (
-              <Button variant="ghost" onClick={clearFilters} className="flex items-center gap-2 h-10 px-4 text-muted-foreground hover:text-foreground">
+              <Button variant="ghost" onClick={clearFilters} className="flex items-center gap-2 h-11 px-4 text-muted-foreground hover:text-foreground">
                 <X className="w-4 h-4" />
                 Limpiar
               </Button>
@@ -149,7 +149,7 @@ export default function HomePage() {
 
           {/* Expanded Filters */}
           {showFilters && (
-            <div className="mt-4 p-4 bg-background rounded border border-border shadow-professional">
+            <div className="mt-6 p-6 bg-background rounded-lg border border-border shadow-minimal">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">Ubicación</label>
@@ -187,34 +187,34 @@ export default function HomePage() {
       </section>
 
       {/* Professionals Grid */}
-      <section className="py-12 px-4 bg-background">
+      <section className="py-16 px-4 bg-background">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-2">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-semibold text-foreground mb-3">
               {filteredProfessionals.length > 0 ? "Profesionales Disponibles" : "No se encontraron profesionales"}
             </h2>
             {filteredProfessionals.length > 0 && (
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground">
                 {filteredProfessionals.length} profesional{filteredProfessionals.length !== 1 ? "es" : ""} encontrado{filteredProfessionals.length !== 1 ? "s" : ""}
               </p>
             )}
           </div>
 
           {filteredProfessionals.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filteredProfessionals.map((professional) => (
                 <ProfessionalCard key={professional.id} professional={professional} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
-              <div className="w-24 h-24 bg-muted rounded flex items-center justify-center mx-auto mb-6 shadow-professional">
-                <Search className="w-12 h-12 text-muted-foreground" />
+            <div className="text-center py-20">
+              <div className="w-32 h-32 bg-muted rounded-lg flex items-center justify-center mx-auto mb-8 shadow-minimal">
+                <Search className="w-16 h-16 text-muted-foreground" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">No se encontraron resultados</h3>
-              <p className="text-muted-foreground mb-6 text-sm">Intenta ajustar tus filtros de búsqueda</p>
+              <h3 className="text-2xl font-semibold text-foreground mb-3">No se encontraron resultados</h3>
+              <p className="text-muted-foreground mb-8">Intenta ajustar tus filtros de búsqueda</p>
               {hasActiveFilters && (
-                <Button onClick={clearFilters} variant="outline" className="px-6 py-2">
+                <Button onClick={clearFilters} variant="outline" className="px-8 py-3">
                   Limpiar filtros
                 </Button>
               )}
@@ -255,91 +255,91 @@ function ProfessionalCard({ professional }: { professional: Professional }) {
   }
 
   return (
-    <Card className="border-border hover:border-primary/30 hover:shadow-professional-lg transition-all duration-200 bg-card">
+    <Card className="border-border hover:border-primary/20 hover:shadow-minimal-lg transition-all duration-200 bg-card overflow-hidden">
       <CardContent className="p-0">
         <Link href={`/professional/${professional.id}`}>
           <div className="relative overflow-hidden">
             <img
               src={professional.profileImage || "/placeholder.svg"}
               alt={professional.name}
-              className="w-full h-48 object-cover transition-transform duration-200 hover:scale-105"
+              className="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-            <div className="absolute top-3 right-3">
-              <div className="flex items-center gap-1 bg-white/95 backdrop-blur-sm px-2 py-1 rounded shadow-professional">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            <div className="absolute top-4 right-4">
+              <div className="flex items-center gap-1 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-minimal">
                 <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                 <span className="text-xs font-medium text-gray-800">{professional.rating}</span>
               </div>
             </div>
-            <div className="absolute bottom-3 left-3">
-              <div className="flex items-center gap-1 bg-white/95 backdrop-blur-sm px-2 py-1 rounded shadow-professional">
-                <div className="w-2 h-2 bg-green-500 rounded"></div>
+            <div className="absolute bottom-4 left-4">
+              <div className="flex items-center gap-1 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-minimal">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span className="text-xs font-medium text-gray-700">Disponible</span>
               </div>
             </div>
           </div>
 
-          <div className="p-4 space-y-3">
-            <div className="space-y-1">
-              <h3 className="text-lg font-semibold text-foreground leading-tight">{professional.name}</h3>
-              <p className="text-primary font-medium text-sm">{professional.profession}</p>
+          <div className="p-6 space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-xl font-semibold text-foreground leading-tight">{professional.name}</h3>
+              <p className="text-primary font-medium">{professional.profession}</p>
             </div>
 
-            <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
               {professional.description}
             </p>
 
-            <div className="flex items-center text-xs text-muted-foreground">
-              <MapPin className="w-3 h-3 mr-1 text-primary" />
+            <div className="flex items-center text-sm text-muted-foreground">
+              <MapPin className="w-4 h-4 mr-2 text-primary" />
               <span className="font-medium">{professional.location.district}, {professional.location.city}</span>
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t border-border">
-              <div className="space-y-0.5">
-                <div className="text-sm font-semibold text-foreground">
+            <div className="flex items-center justify-between pt-3 border-t border-border">
+              <div className="space-y-1">
+                <div className="text-lg font-semibold text-foreground">
                   {professional.rate.currency} {professional.rate.min}
                   {professional.rate.min !== professional.rate.max && ` - ${professional.rate.max}`}
                 </div>
-                <div className="text-xs text-muted-foreground">{professional.rate.type}</div>
+                <div className="text-sm text-muted-foreground">{professional.rate.type}</div>
               </div>
               <div className="text-right">
-                <div className="text-xs text-muted-foreground">{professional.reviewsCount} reseñas</div>
+                <div className="text-sm text-muted-foreground">{professional.reviewsCount} reseñas</div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-2">
               {professional.services.slice(0, 2).map((service, index) => (
-                <Badge key={index} variant="secondary" className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20">
+                <Badge key={index} variant="secondary" className="text-xs px-3 py-1 bg-primary/10 text-primary border-primary/20">
                   {service}
                 </Badge>
               ))}
               {professional.services.length > 2 && (
-                <Badge variant="outline" className="text-xs px-2 py-0.5">
+                <Badge variant="outline" className="text-xs px-3 py-1">
                   +{professional.services.length - 2} más
                 </Badge>
               )}
             </div>
 
-            <div className="flex gap-2 pt-2">
-              <Button variant="outline" size="sm" className="flex-1 border-border hover:bg-accent hover:border-primary/40 text-xs">
+            <div className="flex gap-3 pt-3">
+              <Button variant="outline" size="sm" className="flex-1 border-border hover:bg-accent hover:border-primary/40">
                 Ver Perfil
               </Button>
               {isOwnProfile ? (
                 <Button
                   onClick={handleEditProfile}
                   size="sm"
-                  className="flex-1 bg-primary hover:bg-primary/90 text-white text-xs"
+                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
                 >
-                  <Edit className="w-3 h-3 mr-1" />
+                  <Edit className="w-4 h-4 mr-2" />
                   Editar
                 </Button>
               ) : (
                 <Button
                   onClick={handleWhatsAppContact}
                   size="sm"
-                  className="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs"
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white"
                 >
-                  <MessageCircle className="w-3 h-3 mr-1" />
+                  <MessageCircle className="w-4 h-4 mr-2" />
                   Contactar
                 </Button>
               )}

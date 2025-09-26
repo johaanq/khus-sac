@@ -83,10 +83,10 @@ export default function RegisterPage() {
           Volver al inicio
         </Link>
 
-        <Card className="border-border shadow-professional-lg bg-card">
-          <CardHeader className="space-y-1 pb-4">
-            <CardTitle className="text-xl font-semibold text-center">Registrarse</CardTitle>
-            <CardDescription className="text-center text-sm text-muted-foreground">
+        <Card className="border-border shadow-minimal-lg bg-card">
+          <CardHeader className="space-y-2 pb-6">
+            <CardTitle className="text-2xl font-semibold text-center">Registrarse</CardTitle>
+            <CardDescription className="text-center text-muted-foreground">
               Crea tu cuenta de profesional
             </CardDescription>
           </CardHeader>
@@ -109,7 +109,7 @@ export default function RegisterPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-background h-10"
+                    className="bg-background h-11"
                   />
                 </div>
 
@@ -123,7 +123,7 @@ export default function RegisterPage() {
                     value={formData.profession}
                     onChange={handleChange}
                     required
-                    className="bg-background h-10"
+                    className="bg-background h-11"
                   />
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function RegisterPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="bg-background h-10"
+                  className="bg-background h-11"
                 />
               </div>
 
@@ -152,7 +152,7 @@ export default function RegisterPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="bg-background h-10"
+                  className="bg-background h-11"
                 />
               </div>
 
@@ -167,7 +167,7 @@ export default function RegisterPage() {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="bg-background pr-10 h-10"
+                    className="bg-background pr-10 h-11"
                   />
                   <button
                     type="button"
@@ -190,7 +190,7 @@ export default function RegisterPage() {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
-                    className="bg-background pr-10 h-10"
+                    className="bg-background pr-10 h-11"
                   />
                   <button
                     type="button"
@@ -202,12 +202,12 @@ export default function RegisterPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full h-10" disabled={isLoading}>
+              <Button type="submit" className="w-full h-11" disabled={isLoading}>
                 {isLoading ? "Creando cuenta..." : "Crear Cuenta"}
               </Button>
             </form>
 
-            <div className="mt-4 text-center">
+            <div className="mt-6 text-center">
               <p className="text-sm text-muted-foreground">
                 ¿Ya tienes cuenta?{" "}
                 <Link href="/login" className="text-primary hover:underline font-medium">

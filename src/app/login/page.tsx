@@ -52,10 +52,10 @@ export default function LoginPage() {
           Volver al inicio
         </Link>
 
-        <Card className="border-border shadow-professional-lg bg-card">
-          <CardHeader className="space-y-1 pb-4">
-            <CardTitle className="text-xl font-semibold text-center">Iniciar Sesión</CardTitle>
-            <CardDescription className="text-center text-sm text-muted-foreground">
+        <Card className="border-border shadow-minimal-lg bg-card">
+          <CardHeader className="space-y-2 pb-6">
+            <CardTitle className="text-2xl font-semibold text-center">Iniciar Sesión</CardTitle>
+            <CardDescription className="text-center text-muted-foreground">
               Accede a tu cuenta de profesional
             </CardDescription>
           </CardHeader>
@@ -76,7 +76,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-background h-10"
+                  className="bg-background h-11"
                 />
               </div>
 
@@ -90,7 +90,7 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="bg-background pr-10 h-10"
+                    className="bg-background pr-10 h-11"
                   />
                   <button
                     type="button"
@@ -102,12 +102,12 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full h-10" disabled={isLoading}>
+              <Button type="submit" className="w-full h-11" disabled={isLoading}>
                 {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
               </Button>
             </form>
 
-            <div className="mt-4 text-center">
+            <div className="mt-6 text-center">
               <p className="text-sm text-muted-foreground">
                 ¿No tienes cuenta?{" "}
                 <Link href="/register" className="text-primary hover:underline font-medium">
@@ -117,9 +117,9 @@ export default function LoginPage() {
             </div>
 
             {/* Demo credentials */}
-            <div className="mt-4 p-3 bg-muted rounded border">
-              <p className="text-xs font-medium text-muted-foreground mb-1">Credenciales de prueba:</p>
-              <div className="text-xs text-muted-foreground space-y-0.5">
+            <div className="mt-6 p-4 bg-muted rounded-lg border">
+              <p className="text-sm font-medium text-muted-foreground mb-2">Credenciales de prueba:</p>
+              <div className="text-sm text-muted-foreground space-y-1">
                 <p>Email: maria@email.com</p>
                 <p>Contraseña: 123456</p>
               </div>

@@ -21,11 +21,11 @@ export function Header() {
   }
 
   return (
-    <header className="border-b border-border bg-background/98 backdrop-blur-sm sticky top-0 z-50 shadow-professional">
+    <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center justify-between h-16">
           {/* Brand */}
-          <Link href="/" className="font-bold text-lg text-foreground hover:text-primary transition-colors tracking-tight">
+          <Link href="/" className="font-semibold text-xl text-foreground hover:text-primary transition-colors">
             KHUS SAC
           </Link>
 
@@ -36,7 +36,7 @@ export function Header() {
                  <Link href="/profile" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                    <User className="w-4 h-4" />
                    <span className="font-medium">{user.name}</span>
-                   <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                   <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                      <User className="w-3 h-3 text-primary" />
                    </div>
                  </Link>
@@ -65,8 +65,8 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-3 border-t border-border bg-background/98">
-            <nav className="flex flex-col space-y-3">
+          <div className="md:hidden py-4 border-t border-border bg-background/95">
+            <nav className="flex flex-col space-y-4">
                {user ? (
                  <>
                    <Link
