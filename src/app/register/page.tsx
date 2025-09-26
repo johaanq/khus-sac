@@ -72,42 +72,35 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 dark:from-purple-950/20 dark:via-background dark:to-blue-950/20 flex items-center justify-center p-4">
-      {/* Background decorative elements */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-purple-200/30 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-20 left-20 w-40 h-40 bg-blue-200/30 rounded-full blur-2xl"></div>
-      
-      <div className="w-full max-w-md relative z-10">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
         {/* Back to home */}
         <Link
           href="/"
-          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors group"
+          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft className="w-4 h-4 mr-2" />
           Volver al inicio
         </Link>
 
-        <Card className="border-border shadow-2xl bg-background/95 backdrop-blur-sm">
-          <CardHeader className="space-y-2 text-center pb-8">
-            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-white">P</span>
-            </div>
-            <CardTitle className="text-3xl font-bold">¡Únete a ProConnect!</CardTitle>
-            <CardDescription className="text-muted-foreground text-lg">
-              Crea tu cuenta profesional y conecta con nuevos clientes
+        <Card className="border-border shadow-professional-lg bg-card">
+          <CardHeader className="space-y-1 pb-4">
+            <CardTitle className="text-xl font-semibold text-center">Registrarse</CardTitle>
+            <CardDescription className="text-center text-sm text-muted-foreground">
+              Crea tu cuenta de profesional
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
                 <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
+                  <AlertDescription className="text-sm">{error}</AlertDescription>
                 </Alert>
               )}
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Nombre completo</Label>
+                  <Label htmlFor="name" className="text-sm font-medium">Nombre completo</Label>
                   <Input
                     id="name"
                     name="name"
@@ -116,12 +109,12 @@ export default function RegisterPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-background"
+                    className="bg-background h-10"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="profession">Profesión</Label>
+                  <Label htmlFor="profession" className="text-sm font-medium">Profesión</Label>
                   <Input
                     id="profession"
                     name="profession"
@@ -130,13 +123,13 @@ export default function RegisterPage() {
                     value={formData.profession}
                     onChange={handleChange}
                     required
-                    className="bg-background"
+                    className="bg-background h-10"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-sm font-medium">Email</Label>
                 <Input
                   id="email"
                   name="email"
@@ -145,12 +138,12 @@ export default function RegisterPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="bg-background"
+                  className="bg-background h-10"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone">Teléfono</Label>
+                <Label htmlFor="phone" className="text-sm font-medium">Teléfono</Label>
                 <Input
                   id="phone"
                   name="phone"
@@ -159,12 +152,12 @@ export default function RegisterPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="bg-background"
+                  className="bg-background h-10"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Contraseña</Label>
+                <Label htmlFor="password" className="text-sm font-medium">Contraseña</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -174,7 +167,7 @@ export default function RegisterPage() {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="bg-background pr-10"
+                    className="bg-background pr-10 h-10"
                   />
                   <button
                     type="button"
@@ -187,7 +180,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirmar contraseña</Label>
+                <Label htmlFor="confirmPassword" className="text-sm font-medium">Confirmar contraseña</Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
@@ -197,7 +190,7 @@ export default function RegisterPage() {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
-                    className="bg-background pr-10"
+                    className="bg-background pr-10 h-10"
                   />
                   <button
                     type="button"
@@ -209,12 +202,12 @@ export default function RegisterPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full h-10" disabled={isLoading}>
                 {isLoading ? "Creando cuenta..." : "Crear Cuenta"}
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
+            <div className="mt-4 text-center">
               <p className="text-sm text-muted-foreground">
                 ¿Ya tienes cuenta?{" "}
                 <Link href="/login" className="text-primary hover:underline font-medium">

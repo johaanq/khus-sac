@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { MapPin, Navigation } from "lucide-react"
+import type L from "leaflet"
 
 interface RealMapProps {
   district: string
@@ -14,7 +15,7 @@ interface RealMapProps {
 
 export function RealMap({ district, city, address, coordinates, onLocationChange, isEditable = false }: RealMapProps) {
   const mapRef = useRef<HTMLDivElement>(null)
-  const mapInstanceRef = useRef<any>(null)
+  const mapInstanceRef = useRef<L.Map | null>(null)
 
   // Coordenadas para distritos de Lima
   const limaDistricts = {

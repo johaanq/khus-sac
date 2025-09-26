@@ -21,11 +21,11 @@ export function Header() {
   }
 
   return (
-    <header className="border-b border-border/60 bg-background/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <header className="border-b border-border bg-background/98 backdrop-blur-sm sticky top-0 z-50 shadow-professional">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14">
           {/* Brand */}
-          <Link href="/" className="font-bold text-xl text-foreground hover:text-primary transition-colors">
+          <Link href="/" className="font-bold text-lg text-foreground hover:text-primary transition-colors tracking-tight">
             KHUS SAC
           </Link>
 
@@ -35,8 +35,8 @@ export function Header() {
                <div className="flex items-center space-x-4">
                  <Link href="/profile" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                    <User className="w-4 h-4" />
-                   <span>{user.name}</span>
-                   <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                   <span className="font-medium">{user.name}</span>
+                   <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                      <User className="w-3 h-3 text-primary" />
                    </div>
                  </Link>
@@ -65,8 +65,8 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <nav className="flex flex-col space-y-4">
+          <div className="md:hidden py-3 border-t border-border bg-background/98">
+            <nav className="flex flex-col space-y-3">
                {user ? (
                  <>
                    <Link
