@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { api, type Professional } from "@/lib/api"
-import { Search, MapPin, Star, Filter, X, MessageCircle, Edit } from "lucide-react"
+import { Search, MapPin, Star, Filter, X, MessageCircle, Edit, ArrowRight, Users, Award, Shield } from "lucide-react"
 import { Header } from "@/components/header"
 
 export default function HomePage() {
@@ -87,12 +87,12 @@ export default function HomePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-white">
         <Header />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-muted-foreground">Cargando profesionales...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+            <p className="mt-2 text-gray-600">Cargando profesionales...</p>
           </div>
         </div>
       </div>
@@ -100,101 +100,120 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header />
 
-
-      {/* Search and Filters */}
-      <section className="py-12 px-4 border-b border-border bg-background">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-gray-50 to-white py-24 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-2">Busca tu profesional ideal</h2>
-            <p className="text-muted-foreground">Filtra por ubicación, precio y especialidad</p>
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-light text-gray-900 mb-6 tracking-tight">
+              Conecta con los mejores
+              <span className="block font-medium text-gray-700">profesionales</span>
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-16 leading-relaxed">
+              Encuentra y contrata profesionales verificados para tus proyectos. 
+              Diseño, desarrollo, fotografía y más en un solo lugar.
+            </p>
           </div>
           
-          <div className="flex flex-col lg:flex-row gap-4 items-center">
-            {/* Search */}
-            <div className="relative flex-1 w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input
                 placeholder="Buscar por nombre, profesión o servicio..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 h-11 bg-background border border-input focus:border-primary transition-colors"
+                className="pl-12 h-14 bg-white border-2 border-gray-200 focus:border-gray-900 transition-colors text-lg rounded-full shadow-sm"
               />
-            </div>
-
-            {/* Filter Toggle */}
-            <Button
-              variant="outline"
-              onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 bg-background h-11 px-4 border border-input hover:border-primary transition-colors"
-            >
-              <Filter className="w-4 h-4" />
-              Filtros
-              {hasActiveFilters && (
-                <Badge variant="secondary" className="ml-2 px-2 py-0.5 text-xs bg-primary/10 text-primary">
-                  {[searchTerm, locationFilter, minRate, maxRate].filter(Boolean).length}
-                </Badge>
-              )}
-            </Button>
-
-            {hasActiveFilters && (
-              <Button variant="ghost" onClick={clearFilters} className="flex items-center gap-2 h-11 px-4 text-muted-foreground hover:text-foreground">
-                <X className="w-4 h-4" />
-                Limpiar
+              <Button 
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-10 px-6 bg-gray-900 hover:bg-gray-800 rounded-full"
+                onClick={() => setShowFilters(!showFilters)}
+              >
+                <Filter className="w-4 h-4 mr-2" />
+                Filtros
               </Button>
-            )}
+            </div>
+            
+            {/* Quick Filters */}
+            <div className="flex flex-wrap justify-center gap-3 mt-6">
+              <Button variant="outline" size="sm" className="rounded-full border-gray-200 hover:border-gray-900 hover:bg-gray-50">
+                <MapPin className="w-4 h-4 mr-2" />
+                Lima
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-full border-gray-200 hover:border-gray-900 hover:bg-gray-50">
+                Diseño
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-full border-gray-200 hover:border-gray-900 hover:bg-gray-50">
+                Desarrollo
+              </Button>
+              <Button variant="outline" size="sm" className="rounded-full border-gray-200 hover:border-gray-900 hover:bg-gray-50">
+                Fotografía
+              </Button>
+            </div>
           </div>
+        </div>
+      </section>
 
-          {/* Expanded Filters */}
-          {showFilters && (
-            <div className="mt-6 p-6 bg-background rounded-lg border border-border shadow-minimal">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Advanced Filters */}
+      {showFilters && (
+        <section className="bg-gray-50 py-8 px-4 border-t border-gray-200">
+          <div className="container mx-auto max-w-4xl">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Ubicación</label>
+                  <label className="block text-sm font-medium text-gray-900 mb-3">Ubicación</label>
                   <Input
                     placeholder="Distrito o ciudad"
                     value={locationFilter}
                     onChange={(e) => setLocationFilter(e.target.value)}
-                    className="bg-background"
+                    className="bg-white border-gray-200 focus:border-gray-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Tarifa mínima (PEN)</label>
+                  <label className="block text-sm font-medium text-gray-900 mb-3">Tarifa mínima (PEN)</label>
                   <Input
                     type="number"
                     placeholder="0"
                     value={minRate}
                     onChange={(e) => setMinRate(e.target.value)}
-                    className="bg-background"
+                    className="bg-white border-gray-200 focus:border-gray-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Tarifa máxima (PEN)</label>
+                  <label className="block text-sm font-medium text-gray-900 mb-3">Tarifa máxima (PEN)</label>
                   <Input
                     type="number"
                     placeholder="1000"
                     value={maxRate}
                     onChange={(e) => setMaxRate(e.target.value)}
-                    className="bg-background"
+                    className="bg-white border-gray-200 focus:border-gray-900"
                   />
                 </div>
               </div>
+              {hasActiveFilters && (
+                <div className="flex justify-end mt-6">
+                  <Button variant="ghost" onClick={clearFilters} className="text-gray-600 hover:text-gray-900">
+                    <X className="w-4 h-4 mr-2" />
+                    Limpiar filtros
+                  </Button>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Professionals Grid */}
-      <section className="py-16 px-4 bg-background">
+      <section id="professionals" className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold text-foreground mb-3">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-light text-gray-900 mb-4">
               {filteredProfessionals.length > 0 ? "Profesionales Disponibles" : "No se encontraron profesionales"}
             </h2>
             {filteredProfessionals.length > 0 && (
-              <p className="text-muted-foreground">
+              <p className="text-gray-600 text-lg">
                 {filteredProfessionals.length} profesional{filteredProfessionals.length !== 1 ? "es" : ""} encontrado{filteredProfessionals.length !== 1 ? "s" : ""}
               </p>
             )}
@@ -208,13 +227,13 @@ export default function HomePage() {
             </div>
           ) : (
             <div className="text-center py-20">
-              <div className="w-32 h-32 bg-muted rounded-lg flex items-center justify-center mx-auto mb-8 shadow-minimal">
-                <Search className="w-16 h-16 text-muted-foreground" />
+              <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                <Search className="w-16 h-16 text-gray-400" />
               </div>
-              <h3 className="text-2xl font-semibold text-foreground mb-3">No se encontraron resultados</h3>
-              <p className="text-muted-foreground mb-8">Intenta ajustar tus filtros de búsqueda</p>
+              <h3 className="text-2xl font-light text-gray-900 mb-4">No se encontraron resultados</h3>
+              <p className="text-gray-600 mb-8 max-w-md mx-auto">Intenta ajustar tus filtros de búsqueda o explora nuestras categorías principales</p>
               {hasActiveFilters && (
-                <Button onClick={clearFilters} variant="outline" className="px-8 py-3">
+                <Button onClick={clearFilters} variant="outline" className="px-8 py-3 border-gray-200 hover:border-gray-900">
                   Limpiar filtros
                 </Button>
               )}
@@ -222,6 +241,7 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
     </div>
   )
 }
@@ -251,84 +271,61 @@ function ProfessionalCard({ professional }: { professional: Professional }) {
   const handleEditProfile = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    window.location.href = "/dashboard/edit"
+    window.location.href = "/profile"
   }
 
   return (
-    <Card className="border-border hover:border-primary/20 hover:shadow-minimal-lg transition-all duration-200 bg-card overflow-hidden">
+    <Card className="group bg-white border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all duration-300 overflow-hidden rounded-xl">
       <CardContent className="p-0">
         <Link href={`/professional/${professional.id}`}>
           <div className="relative overflow-hidden">
             <img
               src={professional.profileImage || "/placeholder.svg"}
               alt={professional.name}
-              className="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+              className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-            <div className="absolute top-4 right-4">
-              <div className="flex items-center gap-1 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-minimal">
-                <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                <span className="text-xs font-medium text-gray-800">{professional.rating}</span>
-              </div>
-            </div>
-            <div className="absolute bottom-4 left-4">
-              <div className="flex items-center gap-1 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-minimal">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-xs font-medium text-gray-700">Disponible</span>
-              </div>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
 
           <div className="p-6 space-y-4">
-            <div className="space-y-2">
-              <h3 className="text-xl font-semibold text-foreground leading-tight">{professional.name}</h3>
-              <p className="text-primary font-medium">{professional.profession}</p>
-            </div>
+            {/* Name */}
+            <h3 className="text-xl font-medium text-gray-900 leading-tight group-hover:text-gray-700 transition-colors">
+              {professional.name}
+            </h3>
 
-            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+            {/* Description */}
+            <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">
               {professional.description}
             </p>
 
-            <div className="flex items-center text-sm text-muted-foreground">
-              <MapPin className="w-4 h-4 mr-2 text-primary" />
-              <span className="font-medium">{professional.location.district}, {professional.location.city}</span>
+            {/* Pricing */}
+            <div className="text-lg font-semibold text-gray-900">
+              {professional.rate.currency} {professional.rate.min}
+              {professional.rate.min !== professional.rate.max && ` - ${professional.rate.max}`}
+              <span className="text-sm text-gray-500 ml-2">{professional.rate.type}</span>
             </div>
 
-            <div className="flex items-center justify-between pt-3 border-t border-border">
-              <div className="space-y-1">
-                <div className="text-lg font-semibold text-foreground">
-                  {professional.rate.currency} {professional.rate.min}
-                  {professional.rate.min !== professional.rate.max && ` - ${professional.rate.max}`}
-                </div>
-                <div className="text-sm text-muted-foreground">{professional.rate.type}</div>
-              </div>
-              <div className="text-right">
-                <div className="text-sm text-muted-foreground">{professional.reviewsCount} reseñas</div>
-              </div>
+            {/* Location */}
+            <div className="flex items-center text-sm text-gray-500">
+              <MapPin className="w-4 h-4 mr-2" />
+              <span>{professional.location.district}, {professional.location.city}</span>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {professional.services.slice(0, 2).map((service, index) => (
-                <Badge key={index} variant="secondary" className="text-xs px-3 py-1 bg-primary/10 text-primary border-primary/20">
-                  {service}
-                </Badge>
-              ))}
-              {professional.services.length > 2 && (
-                <Badge variant="outline" className="text-xs px-3 py-1">
-                  +{professional.services.length - 2} más
-                </Badge>
-              )}
-            </div>
-
+            {/* Actions */}
             <div className="flex gap-3 pt-3">
-              <Button variant="outline" size="sm" className="flex-1 border-border hover:bg-accent hover:border-primary/40">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="flex-1 border-gray-200 hover:border-gray-900 hover:bg-gray-50 rounded-lg"
+              >
                 Ver Perfil
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               {isOwnProfile ? (
                 <Button
                   onClick={handleEditProfile}
                   size="sm"
-                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
+                  className="flex-1 bg-gray-900 hover:bg-gray-800 text-white rounded-lg"
                 >
                   <Edit className="w-4 h-4 mr-2" />
                   Editar
@@ -337,7 +334,7 @@ function ProfessionalCard({ professional }: { professional: Professional }) {
                 <Button
                   onClick={handleWhatsAppContact}
                   size="sm"
-                  className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white rounded-lg"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Contactar

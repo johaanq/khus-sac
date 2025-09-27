@@ -6,7 +6,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "ProConnect - Encuentra Profesionales",
+  title: "Khus SAC",
   description: "Plataforma para conectar con profesionales verificados en diseño, desarrollo, fotografía y más",
 }
 

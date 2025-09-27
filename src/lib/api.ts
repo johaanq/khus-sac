@@ -29,6 +29,7 @@ export interface Professional {
   }
   rating: number
   reviewsCount: number
+  views?: number
   isActive: boolean
 }
 

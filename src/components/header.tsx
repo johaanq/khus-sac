@@ -21,26 +21,30 @@ export function Header() {
   }
 
   return (
-    <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
+    <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand */}
-          <Link href="/" className="font-semibold text-xl text-foreground hover:text-primary transition-colors">
+          <Link href="/" className="font-light text-2xl text-gray-900 hover:text-gray-700 transition-colors">
             KHUS SAC
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-8">
              {user ? (
-               <div className="flex items-center space-x-4">
-                 <Link href="/profile" className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                   <User className="w-4 h-4" />
-                   <span className="font-medium">{user.name}</span>
-                   <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                     <User className="w-3 h-3 text-primary" />
+               <div className="flex items-center space-x-6">
+                 <Link href="/profile" className="flex items-center space-x-3 text-sm text-gray-600 hover:text-gray-900 transition-colors group">
+                   <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+                     <User className="w-4 h-4 text-gray-600" />
                    </div>
+                   <span className="font-medium">{user.name}</span>
                  </Link>
-                 <Button variant="ghost" size="sm" onClick={handleLogout}>
+                 <Button 
+                   variant="ghost" 
+                   size="sm" 
+                   onClick={handleLogout}
+                   className="text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                 >
                    <LogOut className="w-4 h-4 mr-2" />
                    Salir
                  </Button>
@@ -48,39 +52,50 @@ export function Header() {
             ) : (
               <div className="flex items-center space-x-4">
                 <Link href="/login">
-                  <Button variant="ghost">Iniciar Sesión</Button>
+                  <Button variant="ghost" className="text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                    Iniciar Sesión
+                  </Button>
                 </Link>
                 <Link href="/register">
-                  <Button>Registrarse</Button>
+                  <Button className="bg-gray-900 hover:bg-gray-800 text-white px-6">
+                    Registrarse
+                  </Button>
                 </Link>
               </div>
             )}
           </nav>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button 
+            className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-background/95">
+          <div className="md:hidden py-4 border-t border-gray-200 bg-white/95 backdrop-blur-md">
             <nav className="flex flex-col space-y-4">
                {user ? (
                  <>
                    <Link
                      href="/profile"
-                     className="text-muted-foreground hover:text-foreground transition-colors"
+                     className="flex items-center space-x-3 text-gray-600 hover:text-gray-900 transition-colors py-2"
                      onClick={() => setIsMenuOpen(false)}
                    >
-                     Mi Perfil
+                     <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                       <User className="w-4 h-4 text-gray-600" />
+                     </div>
+                     <span className="font-medium">{user.name}</span>
                    </Link>
-                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                     <User className="w-4 h-4" />
-                     <span>{user.name}</span>
-                   </div>
-                   <Button variant="ghost" size="sm" onClick={handleLogout} className="justify-start">
+                   <Button 
+                     variant="ghost" 
+                     size="sm" 
+                     onClick={handleLogout} 
+                     className="justify-start text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                   >
                      <LogOut className="w-4 h-4 mr-2" />
                      Salir
                    </Button>
@@ -88,12 +103,14 @@ export function Header() {
                ) : (
                 <div className="flex flex-col space-y-2">
                   <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="ghost" className="w-full justify-start">
+                    <Button variant="ghost" className="w-full justify-start text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                       Iniciar Sesión
                     </Button>
                   </Link>
                   <Link href="/register" onClick={() => setIsMenuOpen(false)}>
-                    <Button className="w-full justify-start">Registrarse</Button>
+                    <Button className="w-full justify-start bg-gray-900 hover:bg-gray-800 text-white">
+                      Registrarse
+                    </Button>
                   </Link>
                 </div>
               )}

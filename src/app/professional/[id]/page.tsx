@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { api, type Professional } from "@/lib/api"
 import { Header } from "@/components/header"
 import { RealMap } from "@/components/real-map"
-import { ArrowLeft, Star, MapPin, Phone, Mail, ChevronLeft, ChevronRight, X, ExternalLink, Edit, Camera, DollarSign, User, MessageCircle } from "lucide-react"
+import { ArrowLeft, Star, MapPin, Phone, Mail, ChevronLeft, ChevronRight, X, ExternalLink, Edit, Camera, DollarSign, User, MessageCircle, Award, Users, Eye } from "lucide-react"
 
 export default function ProfessionalProfilePage() {
   const params = useParams()
@@ -62,7 +62,7 @@ export default function ProfessionalProfilePage() {
   }
 
   const handleEditProfile = () => {
-    window.location.href = "/dashboard/edit"
+    window.location.href = "/profile"
   }
 
   const nextImage = () => {
@@ -99,335 +99,280 @@ export default function ProfessionalProfilePage() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
+      <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <Link
           href="/"
-          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
+          className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-8 transition-colors group"
         >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Volver a profesionales
+          <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+          Volver a inicio
         </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Profile Header */}
-            <Card className="border-border">
-              <CardContent className="p-6">
-                <div className="flex flex-col sm:flex-row gap-6">
-                  <div className="relative">
-                    <Image
-                      src={professional.profileImage || "/placeholder.svg"}
-                      alt={professional.name}
-                      width={128}
-                      height={128}
-                      className="w-32 h-32 rounded-lg object-cover mx-auto sm:mx-0"
-                      onError={(e) => {
-                        e.currentTarget.src = "/placeholder.svg"
-                      }}
-                    />
-                    {isOwnProfile && (
-                      <button 
-                        onClick={handleEditProfile}
-                        className="absolute bottom-2 right-2 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors"
-                      >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                  <div className="flex-1 text-center sm:text-left">
-                    <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
-                      <h1 className="text-3xl font-bold text-foreground">{professional.name}</h1>
-                      {isOwnProfile && (
-                        <Button variant="outline" size="sm" onClick={handleEditProfile}>
-                          <Edit className="w-4 h-4 mr-2" />
-                          Editar
-                        </Button>
-                      )}
-                    </div>
-                    <p className="text-xl text-primary font-medium mb-3">{professional.profession}</p>
-                    <div className="flex items-center justify-center sm:justify-start gap-4 mb-4">
-                      <div className="flex items-center">
-                        <Star className="w-5 h-5 text-yellow-500 fill-current mr-1" />
-                        <span className="font-medium">{professional.rating}</span>
-                        <span className="text-muted-foreground ml-1">({professional.reviewsCount} reseñas)</span>
-                      </div>
-                      <div className="flex items-center text-muted-foreground">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {professional.location.district}, {professional.location.city}
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                      {professional.services.map((service, index) => (
-                        <Badge key={index} variant="secondary">
-                          {service}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
+        <div className="flex min-h-screen">
+          {/* Left Sidebar Navigation */}
+          <div className="w-80 bg-white border-r border-gray-200 p-8 sticky top-0 h-screen overflow-y-auto">
+            {/* Profile Image */}
+            <div className="relative mb-8">
+              <Image
+                src={professional.profileImage || "/placeholder.svg"}
+                alt={professional.name}
+                width={120}
+                height={120}
+                className="w-32 h-32 rounded-full object-cover mx-auto shadow-soft"
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg"
+                }}
+              />
+              {isOwnProfile && (
+                <button 
+                  onClick={handleEditProfile}
+                  className="absolute bottom-2 right-8 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors shadow-soft"
+                >
+                  <Edit className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Navigation Menu */}
+            <nav className="space-y-2 mb-8">
+              <div className="text-sm font-medium text-gray-900 py-2 border-l-2 border-gray-900 pl-4 bg-gray-50">
+                sobre mí
+              </div>
+              <div className="text-sm text-gray-600 hover:text-gray-900 py-2 pl-4 cursor-pointer transition-colors">
+                servicios
+              </div>
+              <div className="text-sm text-gray-600 hover:text-gray-900 py-2 pl-4 cursor-pointer transition-colors">
+                galería
+              </div>
+              <div className="text-sm text-gray-600 hover:text-gray-900 py-2 pl-4 cursor-pointer transition-colors">
+                contacto
+              </div>
+            </nav>
+
+            {/* Quick Stats */}
+            <div className="space-y-4 pt-8 border-t border-gray-200">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-600">Calificación</span>
+                <div className="flex items-center">
+                  <Star className="w-4 h-4 text-yellow-500 fill-current mr-1" />
+                  <span className="text-sm font-medium">{professional.rating}</span>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Description */}
-            <Card className="border-border">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="flex items-center">
-                  <User className="w-5 h-5 mr-2 text-primary" />
-                  Sobre mí
-                </CardTitle>
-                {isOwnProfile && (
-                  <Button variant="ghost" size="sm" onClick={handleEditProfile}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">{professional.description}</p>
-              </CardContent>
-            </Card>
-
-            {/* Services */}
-            <Card className="border-border">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle>Servicios Ofrecidos</CardTitle>
-                {isOwnProfile && (
-                  <Button variant="ghost" size="sm" onClick={handleEditProfile}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {professional.services.map((service, index) => (
-                    <Badge key={index} variant="secondary" className="text-sm">
-                      {service}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Gallery */}
-            <Card className="border-border">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="flex items-center">
-                  <Camera className="w-5 h-5 mr-2 text-primary" />
-                  Galería de Trabajos
-                </CardTitle>
-                {isOwnProfile && (
-                  <Button variant="ghost" size="sm" onClick={handleEditProfile}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent>
-                {professional.gallery.length > 0 ? (
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {professional.gallery.map((image, index) => (
-                      <div key={index} className="relative group">
-                        <Image
-                          src={image}
-                          alt={`Trabajo ${index + 1}`}
-                          width={200}
-                          height={150}
-                          className="w-full h-32 object-cover rounded-lg"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-lg flex items-center justify-center">
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity w-8 h-8 bg-white/90 rounded-full flex items-center justify-center">
-                            <ExternalLink className="w-4 h-4 text-foreground" />
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-muted-foreground text-center py-8">No hay trabajos en la galería</p>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Map */}
-            <Card className="border-border">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="flex items-center">
-                  <MapPin className="w-5 h-5 mr-2 text-primary" />
-                  Ubicación en el Mapa
-                </CardTitle>
-                {isOwnProfile && (
-                  <Button variant="ghost" size="sm" onClick={handleEditProfile}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent>
-                <RealMap
-                  district={professional.location.district}
-                  city={professional.location.city}
-                  address={professional.location.address}
-                  coordinates={professional.location.coordinates}
-                  isEditable={false}
-                />
-              </CardContent>
-            </Card>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-600">Proyectos</span>
+                <span className="text-sm font-medium">45+</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-600">Reseñas</span>
+                <span className="text-sm font-medium">{professional.reviewsCount}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-600">Vistas</span>
+                <span className="text-sm font-medium">{professional.views || 0}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Contact Info */}
-            <Card className="border-border">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="flex items-center">
-                  <Phone className="w-5 h-5 mr-2 text-primary" />
-                  Información de Contacto
-                </CardTitle>
-                {isOwnProfile && (
-                  <Button variant="ghost" size="sm" onClick={handleEditProfile}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm">{professional.phone}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm">{professional.email || 'email@ejemplo.com'}</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <MapPin className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm font-medium">Ubicación</span>
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-sm font-medium">{professional.location.district}, {professional.location.city}</span>
-                    {professional.location.address && (
-                      <div className="text-xs text-muted-foreground">{professional.location.address}</div>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Main Content Area */}
+          <div className="flex-1 max-w-4xl mx-auto p-12">
+            {/* Header Section */}
+            <div className="mb-16">
+              <h1 className="text-5xl font-light text-gray-900 mb-4 text-balance">{professional.name}</h1>
+              <p className="text-xl text-gray-600 mb-8 font-light">{professional.profession}</p>
 
-            {/* Pricing */}
-            <Card className="border-border">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="flex items-center">
-                  <DollarSign className="w-5 h-5 mr-2 text-primary" />
-                  Tarifas
-                </CardTitle>
-                {isOwnProfile && (
-                  <Button variant="ghost" size="sm" onClick={handleEditProfile}>
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                )}
-              </CardHeader>
-              <CardContent>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-foreground mb-1">
-                    {professional.rate.currency} {professional.rate.min}
-                    {professional.rate.min !== professional.rate.max && ` - ${professional.rate.max}`}
-                  </div>
-                  <div className="text-sm text-muted-foreground">{professional.rate.type}</div>
+              <div className="flex items-center gap-6 mb-8">
+                <div className="flex items-center text-gray-600">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  <span className="text-sm">
+                    {professional.location.district}, {professional.location.city}
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="text-2xl font-light text-gray-900">
+                  {professional.rate.currency} {professional.rate.min}
+                  {professional.rate.min !== professional.rate.max && ` - ${professional.rate.max}`}
+                  <span className="text-sm text-gray-600 ml-2">{professional.rate.type}</span>
+                </div>
+              </div>
 
-            {/* Contact Button */}
-            <Card className="border-border">
-              <CardContent className="p-6">
-                {isOwnProfile ? (
-                  <Button onClick={handleEditProfile} className="w-full">
+              <div className="flex flex-wrap gap-2 mb-8">
+                {professional.services.map((service, index) => (
+                  <Badge key={index} variant="secondary" className="text-sm font-normal bg-gray-100 text-gray-700 border-0">
+                    {service}
+                  </Badge>
+                ))}
+              </div>
+
+              <div className="flex gap-3">
+                <Button onClick={handleWhatsAppContact} className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl">
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Contactar por WhatsApp
+                </Button>
+                {isOwnProfile && (
+                  <Button 
+                    onClick={handleEditProfile}
+                    variant="outline"
+                    className="border-gray-200 hover:border-gray-900 hover:bg-gray-50 px-8 py-3 rounded-xl"
+                  >
                     <Edit className="w-4 h-4 mr-2" />
                     Editar Perfil
                   </Button>
-                ) : (
-                  <Button 
-                    onClick={handleWhatsAppContact}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white"
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Contactar por WhatsApp
-                  </Button>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* Stats */}
-            <Card className="border-border">
-              <CardHeader>
-                <CardTitle>Estadísticas</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Calificación promedio</span>
-                  <div className="flex items-center">
-                    <Star className="w-4 h-4 text-yellow-500 fill-current mr-1" />
-                    <span className="font-medium">{professional.rating}</span>
+            {/* About Section */}
+            <section className="mb-20">
+              <h2 className="text-2xl font-light text-gray-900 mb-8">Sobre mí</h2>
+              <p className="text-gray-600 leading-relaxed text-lg max-w-3xl">{professional.description}</p>
+            </section>
+
+            {/* Services Section */}
+            <section className="mb-20">
+              <h2 className="text-2xl font-light text-gray-900 mb-8">Servicios</h2>
+              <div className="flex flex-wrap gap-2">
+                {professional.services.map((service, index) => (
+                  <Badge key={index} variant="secondary" className="text-sm font-normal bg-gray-100 text-gray-700 border-0 px-3 py-1">
+                    {service}
+                  </Badge>
+                ))}
+              </div>
+            </section>
+
+            {/* Gallery Section */}
+            <section className="mb-20">
+              <h2 className="text-2xl font-light text-gray-900 mb-8">Galería de Trabajos</h2>
+              
+              {professional.gallery.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                  {professional.gallery.map((image, index) => (
+                    <div key={index} className="relative group">
+                      <Image
+                        src={image || "/placeholder.svg"}
+                        alt={`Trabajo ${index + 1}`}
+                        width={300}
+                        height={200}
+                        className="w-full h-48 object-cover rounded-xl shadow-subtle cursor-pointer"
+                        onClick={() => {
+                          setSelectedImageIndex(index)
+                          setShowImageModal(true)
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-xl flex items-center justify-center">
+                        <button className="opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-soft">
+                          <ExternalLink className="w-4 h-4 text-gray-900" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12 text-gray-500">
+                  <Camera className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <p>No hay trabajos en la galería</p>
+                </div>
+              )}
+            </section>
+
+            {/* Contact & Location Section */}
+            <section className="mb-20">
+              <h2 className="text-2xl font-light text-gray-900 mb-8">Contacto</h2>
+
+              <div className="grid md:grid-cols-2 gap-12">
+                {/* Contact Info */}
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-6">Información de contacto</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <Phone className="w-5 h-5 text-gray-500" />
+                      <span className="text-gray-900">{professional.phone}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-5 h-5 text-gray-500" />
+                      <span className="text-gray-900">{professional.email}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Reseñas</span>
-                  <span className="font-medium">{professional.reviewsCount}</span>
+
+                {/* Location */}
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-6">Ubicación</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <MapPin className="w-5 h-5 text-gray-500" />
+                      <div>
+                        <div className="text-gray-900">
+                          {professional.location.district}, {professional.location.city}
+                        </div>
+                        {professional.location.address && (
+                          <div className="text-sm text-gray-600">{professional.location.address}</div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="h-48 rounded-xl overflow-hidden">
+                      <RealMap
+                        district={professional.location.district}
+                        city={professional.location.city}
+                        address={professional.location.address}
+                        coordinates={professional.location.coordinates}
+                        isEditable={false}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Proyectos completados</span>
-                  <span className="font-medium">{professional.reviewsCount * 2}</span>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            </section>
           </div>
         </div>
-      </div>
 
-      {/* Image Modal */}
-      {showImageModal && professional.gallery.length > 0 && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-full">
-            <button
-              onClick={() => setShowImageModal(false)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-
-            <Image
-              src={professional.gallery[selectedImageIndex] || "/placeholder.svg"}
-              alt={`Trabajo ${selectedImageIndex + 1}`}
-              width={800}
-              height={600}
-              className="max-w-full max-h-[80vh] object-contain rounded-lg"
-              onError={(e) => {
-                e.currentTarget.src = "/placeholder.svg"
-              }}
-            />
-
-            {professional.gallery.length > 1 && (
-              <>
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
-                >
-                  <ChevronLeft className="w-8 h-8" />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
-                >
-                  <ChevronRight className="w-8 h-8" />
-                </button>
-              </>
-            )}
-
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
-              {selectedImageIndex + 1} de {professional.gallery.length}
+        {/* Image Modal */}
+        {showImageModal && professional.gallery.length > 0 && (
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+            <div className="relative max-w-4xl max-h-full">
+              <button
+                onClick={() => setShowImageModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 text-gray-900 rounded-full flex items-center justify-center hover:bg-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="relative">
+                <Image
+                  src={professional.gallery[selectedImageIndex]}
+                  alt={`Trabajo ${selectedImageIndex + 1}`}
+                  width={800}
+                  height={600}
+                  className="max-w-full max-h-[80vh] object-contain rounded-lg"
+                />
+                
+                {professional.gallery.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 text-gray-900 rounded-full flex items-center justify-center hover:bg-white transition-colors"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 text-gray-900 rounded-full flex items-center justify-center hover:bg-white transition-colors"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
+              </div>
+              
+              <div className="text-center mt-4 text-white">
+                <p className="text-sm">
+                  {selectedImageIndex + 1} de {professional.gallery.length}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
